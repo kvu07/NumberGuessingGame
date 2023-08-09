@@ -48,8 +48,8 @@ SET default_table_access_method = heap;
 --
 
 CREATE TABLE public.games (
+    game_id integer NOT NULL,
     username character varying(22) NOT NULL,
-    user_game_id integer NOT NULL,
     guesses integer NOT NULL
 );
 
@@ -57,9 +57,50 @@ CREATE TABLE public.games (
 ALTER TABLE public.games OWNER TO freecodecamp;
 
 --
+-- Name: games_game_id_seq; Type: SEQUENCE; Schema: public; Owner: freecodecamp
+--
+
+CREATE SEQUENCE public.games_game_id_seq
+    AS integer
+    START WITH 1
+    INCREMENT BY 1
+    NO MINVALUE
+    NO MAXVALUE
+    CACHE 1;
+
+
+ALTER TABLE public.games_game_id_seq OWNER TO freecodecamp;
+
+--
+-- Name: games_game_id_seq; Type: SEQUENCE OWNED BY; Schema: public; Owner: freecodecamp
+--
+
+ALTER SEQUENCE public.games_game_id_seq OWNED BY public.games.game_id;
+
+
+--
+-- Name: games game_id; Type: DEFAULT; Schema: public; Owner: freecodecamp
+--
+
+ALTER TABLE ONLY public.games ALTER COLUMN game_id SET DEFAULT nextval('public.games_game_id_seq'::regclass);
+
+
+--
 -- Data for Name: games; Type: TABLE DATA; Schema: public; Owner: freecodecamp
 --
 
+INSERT INTO public.games VALUES (1, 'A', 10);
+INSERT INTO public.games VALUES (2, 'A', 8);
+INSERT INTO public.games VALUES (3, 'A', 14);
+INSERT INTO public.games VALUES (4, 'B', 20);
+INSERT INTO public.games VALUES (5, 'B', 6);
+
+
+--
+-- Name: games_game_id_seq; Type: SEQUENCE SET; Schema: public; Owner: freecodecamp
+--
+
+SELECT pg_catalog.setval('public.games_game_id_seq', 5, true);
 
 
 --
@@ -67,7 +108,7 @@ ALTER TABLE public.games OWNER TO freecodecamp;
 --
 
 ALTER TABLE ONLY public.games
-    ADD CONSTRAINT games_pkey PRIMARY KEY (username, user_game_id);
+    ADD CONSTRAINT games_pkey PRIMARY KEY (game_id);
 
 
 --
