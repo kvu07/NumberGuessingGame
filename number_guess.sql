@@ -89,18 +89,13 @@ ALTER TABLE ONLY public.games ALTER COLUMN game_id SET DEFAULT nextval('public.g
 -- Data for Name: games; Type: TABLE DATA; Schema: public; Owner: freecodecamp
 --
 
-INSERT INTO public.games VALUES (1, 'A', 10);
-INSERT INTO public.games VALUES (2, 'A', 8);
-INSERT INTO public.games VALUES (3, 'A', 14);
-INSERT INTO public.games VALUES (4, 'B', 20);
-INSERT INTO public.games VALUES (5, 'B', 6);
 
 
 --
 -- Name: games_game_id_seq; Type: SEQUENCE SET; Schema: public; Owner: freecodecamp
 --
 
-SELECT pg_catalog.setval('public.games_game_id_seq', 5, true);
+SELECT pg_catalog.setval('public.games_game_id_seq', 33, true);
 
 
 --
